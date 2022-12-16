@@ -1,0 +1,47 @@
+create table llx_facture_fourn_det_rec
+(
+    rowid                   int auto_increment
+        primary key,
+    fk_facture_fourn        int                              not null,
+    fk_parent_line          int                              null,
+    fk_product              int                              null,
+    ref                     varchar(50)                      null,
+    label                   varchar(255)                     null,
+    description             text                             null,
+    pu_ht                   double(24, 8)                    null,
+    pu_ttc                  double(24, 8)                    null,
+    qty                     double                           null,
+    remise_percent          double        default 0          null,
+    fk_remise_except        int                              null,
+    vat_src_code            varchar(10)   default ''         null,
+    tva_tx                  double(7, 4)                     null,
+    localtax1_tx            double(7, 4)  default 0.0000     null,
+    localtax1_type          varchar(10)                      null,
+    localtax2_tx            double(7, 4)  default 0.0000     null,
+    localtax2_type          varchar(10)                      null,
+    total_ht                double(24, 8)                    null,
+    total_tva               double(24, 8)                    null,
+    total_localtax1         double(24, 8) default 0.00000000 null,
+    total_localtax2         double(24, 8) default 0.00000000 null,
+    total_ttc               double(24, 8)                    null,
+    product_type            int           default 0          null,
+    date_start              int                              null,
+    date_end                int                              null,
+    info_bits               int           default 0          null,
+    special_code            int unsigned  default 0          null,
+    rang                    int           default 0          null,
+    fk_unit                 int                              null,
+    import_key              varchar(14)                      null,
+    fk_user_author          int                              null,
+    fk_user_modif           int                              null,
+    fk_multicurrency        int                              null,
+    multicurrency_code      varchar(3)                       null,
+    multicurrency_subprice  double(24, 8) default 0.00000000 null,
+    multicurrency_total_ht  double(24, 8) default 0.00000000 null,
+    multicurrency_total_tva double(24, 8) default 0.00000000 null,
+    multicurrency_total_ttc double(24, 8) default 0.00000000 null,
+    constraint fk_facture_fourn_det_rec_fk_unit
+        foreign key (fk_unit) references llx_c_units (rowid)
+)
+    engine = InnoDB;
+
